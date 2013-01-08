@@ -8,7 +8,7 @@ My location
 * Pushing the 'my location' symbol, the map should center around the user's location, similar to google maps
 
 Search box
-* Touching the search box brings up the search page, similar to google maps
+* Touching the search box brings up the search page, similar to google maps (Transition: fade, like google maps)
 * The search box displays the current search if there is one
 * When there is a current search the X button is displayed to the right of the search box so the search can be cleared
 
@@ -18,16 +18,17 @@ My Trip Icon
 
 Pins
 * Pins are color coded to match their symbol
-* Touching a pin selects that pin and then shows the Detali panel about that pin at the bottom, see Map with Detail
+* Touching a pin selects that pin and then shows the Detali panel about that pin at the bottom, see Map with Detail (transition proposal: vertically slide the results panel down)
 * Touching a pin will "slide" the current place out of the details panel and be replaced by the place of the new pin (assuming the Detail panel is visible)
-* Touching the map (not on a pin) deselects the current pin, and hides the Detail panel
+* Touching the map (not on a pin) deselects the current pin, and hides the Detail panel (transition proposal: vertically slide the results panel back up)
 * Pins for places that have been saved to your trip need to be distinguished visually, with a star perhaps
 
 Detail panel
 * This panel is shown instead of the results panel when a pin has been selected
 * If the user deselects a pin (by clicking on the map) then this is hidden (revealing the results panel)
 * The detail panel can be swiped horizontally to scroll through the places
-* When the detail panel is swiped the old pin should be deselected and the new pin selected, so the user can see where this place is on the map
+* When the detail panel is swiped the old pin should be deselected and the new pin selected, so the user can see where this place is on the map (transition: pins should grow/shrink like google maps)
+* Touching the detail panel takes you to the Detail screen (transition: slide up)
 
 Results panel
 * This is the panel at the bottom
