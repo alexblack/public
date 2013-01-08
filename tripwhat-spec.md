@@ -70,7 +70,7 @@ Buttons
 * More [Description] - this button reveals more of the description
 * More photos - this reveals the rest of the photos
 
-## Search ##
+## Search Screen ##
 
 This should be quite similar to Google Maps on IOS.  
 
