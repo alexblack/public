@@ -92,3 +92,9 @@ Empty search
 Autocomplete
 * As the user types in a search it will show them suggestions
 * Some suggestions will be locations that move the map (like New York) others will be keywords that search for places on the current map (e.g. steak houses)
+
+## Analytics ##
+
+* Views of each screen
+* Events: search, swipe-detail-panel, filter-event, filter-attraction, filter-restaurant, filter-date, save-to-mytrip, delete-from-mytrip, detail-call, detail-directions, detail-tickets, detail-website, detail-yelp, detail-fb, detail-twitter
+* 
