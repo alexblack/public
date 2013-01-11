@@ -1,100 +1,148 @@
-# Overview #
-TripWhat is a mobile app to help people plan a trip.  
+Autosuggest
+=========
 
-## Map screen ##
-This is the screen we show to the user when they open the app.
+ `GET /api/autosuggest`
 
-My location
-* Pushing the 'my location' symbol, the map should center around the user's location, similar to google maps
+<table>
+<tr>
+<th>Parameter</th><th>Description</th><th>Examples</th>
+</tr>
+<td>q</td><td>The search query.</td><td><tt>Space Needle</tt>, <tt>sushi</tt>, <tt>Seattle</tt></td>
+</tr>
+<tr><td>lat (optional)</td><td>The user's latitude; will be inferred from IP address if omitted.</td><td><tt>47.609722</tt></td></tr>
+<tr><td>lng (optional)</td><td>The user's longitude; will be inferred from IP address if omitted.</td><td><tt>-122.333056</tt></td></tr>
+</table>
 
-Search box
-* Touching the search box brings up the search page, similar to google maps (Transition: fade, like google maps)
-* The search box displays the current search if there is one
-* When there is a current search the X button is displayed to the right of the search box so the search can be cleared
+**Response**
 
-My Trip Icon
-* This is the blue asterisk in the search box
-* Touching this invokes the "My trip" search
+`AutosuggestEntry[]`, where AutosuggestEntry is an object with these fields:
 
-Pins
-* Pins are color coded to match their symbol
-* Touching a pin selects that pin and then shows the Detali panel about that pin at the bottom, see Map with Detail (transition proposal: vertically slide the results panel down)
-* Touching a pin will "slide" the current place out of the details panel and be replaced by the place of the new pin (assuming the Detail panel is visible)
-* Touching the map (not on a pin) deselects the current pin, and hides the Detail panel (transition proposal: vertically slide the results panel back up)
-* Pins for places that have been saved to your trip need to be distinguished visually, with a star perhaps
+<table>
+<tr>
+<th>Field</th><th>Description</th><th>Examples</th>
+</tr>
+<tr><td>id (optional)</td><td>String. Only returned for attractions (e.g., the Space Needle); will not be present for queries like <tt>sushi restaurant</tt> or <tt>seattle</tt>.</td><td><tt>-9223372036852184203</tt></td></tr>
+<tr><td>name</td><td>String. The name of the suggested query.</td><td><tt>sushi restauraunts</tt>, <tt>Seattle</tt>, <tt>Space Needle</tt></td></tr>
+<tr><td>location (optional)</td><td>String. The location of the attraction.</td><td><tt>Seattle, WA</tt></td></tr>
+<tr><td>kind</td><td>String. The kind of attraction.</td><td><tt>city</tt>, <tt>hood</tt>, <tt>sight</tt>, <tt>food</tt>, <tt>event</tt></td></tr>
+<tr><td>bounds (optional)</td><td><tt>GeoBounds</tt> object. The recommended viewport for the map if the user selects this item.</td><td>See GeoBounds object.</tt></td></tr>
+</table>
 
-Detail panel
-* This panel is shown instead of the results panel when a pin has been selected
-* If the user deselects a pin (by clicking on the map) then this is hidden (revealing the results panel)
-* The detail panel can be swiped horizontally to scroll through the places
-* When the detail panel is swiped the old pin should be deselected and the new pin selected, so the user can see where this place is on the map (transition: pins should grow/shrink like google maps)
-* Touching the detail panel takes you to the Detail screen (transition: slide up)
+If `bounds` is returned, the app should refocus the map such that it contains those bounds.
 
-Results panel
-* This is the panel at the bottom
-* It represents the places found within the map bounds
-* It has three icons: events, attractions and restaurants
-* Beside each icon it has a number indicating how many places of that type are in the map bounds
-* The filter numbers should update in realtime when the map is zoomed or panned, or when the search changes
-* Touching one of these icons filters the visible items to that type, they are multi-select, so you could touch events and restaurants
-* Touching List takes you to the List screen
-* Dragging the filter handle up reveals another filter: the date filter
+If `id` is returned, the app should highlight that marker when it's returned from a subsequent `/api/search` request.
 
-Date filter
-* This lets the user set what date range they are planning their trip for
-* It defaults to Today
-* The user can change it to include say next weekend, or the start and end of a future trip
-* Its main purpose is to restrict which events are shown, e.g. maybe you're in town today and want to see concerts 
+Search Results
+=========
+`GET /api/search`
 
-Zooming and panning the map
-* This changes the bounds of the user's search
-* The # of results of each type shoudl update in realtime in the Results panel
+For a given bounding geographical area, return attractions that match a query or a filter.
 
-## Detail screen ##
+Examples:
+* http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=sight,food,event
+* http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=event&from=2013-01-10T10:00:00Z&to=2013-02-10T10:00:00Z
 
-This screen is used to learn more about one of the attractions
+<table>
+<tr>
+<th>Parameter</th><th>Description</th><th>Examples</th>
+</tr>
+<td>q (optional)</td><td>The search query.</td><td><tt>sushi</tt>, <tt>museum</tt></td>
+</tr>
+<tr><td>north</td><td>The northern latitude.</td><td><tt>47.646229</tt></td></tr>
+<tr><td>east</td><td>The eastern longitude.</td><td><tt>-122.307658</tt></td></tr>
+<tr><td>south</td><td>The southern latitude.</td><td><tt>47.594739</tt></td></tr>
+<tr><td>west</td><td>The western longitude.</td><td><tt>-122.391772</tt></td></tr>
+<tr><td>kinds</td><td>Comma-separated string of attraction kinds to return.</td><td><tt>sight,food,event</tt></td></tr>
+<tr><td>from (optional)</td><td>An ISO 8601 timestamp; events must be scheduled AFTER this value. If not present, defaults to the current time.</td><td><tt>2013-01-10T10:00:00Z</tt></td></tr>
+<tr><td>to (optional)</td><td>An ISO 8601 timestamp; events must be scheduled BEFORE this value. If not present, defaults to the current time plus 24 hours.</td><td><tt>2013-01-11T10:00:00Z</tt></td></tr>
+</table>
 
-Navigation
-* The list button takes you back to the list
-* The user can swipe horizontally to go through the list (and get from end to beginning)
+**Error Response**
 
-Layout
-* There are slightly different templates for each type of attraction: event, restaurant or attraction
-* For restaurants we want to show the hours it is open today and the price range, for events we want to show the showtimes and price range
+If the request is invalid, you will get an object with these fields:
 
-Buttons
-* The call button invokes the phone dialer and should be shown if we have the phone number
-* The directions button invokes Navigation in google maps from current location to this location
-* The website button opens the website in the browser
-* Yelp button opens the yelp webpage in the browser
-* The tickets button opens the seat geak page in the browser
-* More [Description] - this button reveals more of the description
-* More photos - this reveals the rest of the photos
+<table>
+<tr>
+<th>Field</th><th>Description</th><th>Examples</th>
+</tr>
+<tr><td>status</td><td>String.</td><td><tt>error</tt></td></tr>
+<tr><td>message</td><td>String. An explanation of the problem. Do not show this to end-users;</td><td><tt>invalid parameter: when (could not parse 'foo')</tt></td></tr>
+</table>
 
-## Search Screen ##
+**Response**
 
-This should be quite similar to Google Maps on IOS.  
+<tt>SearchResponse</tt>, an object with these fields:
 
-Two types of searches
-* Locations like New York which will move the map to that location and show you places in New York
-* Types of places like "steak houses" or "fun" which will search the current results for places that match that text
+<table>
+<tr>
+<th>Field</th><th>Description</th><th>Examples</th>
+</tr>
+<tr><td>status</td><td>String.</td><td><tt>ok</tt></td></tr>
+<tr><td>num_sight</td><td>Integer. The number of attractions (e.g. the Space Needle) in the viewport; including those not explicitly listed in <tt>results</tt>.</td><td><tt>128</tt></td></tr>
+<tr><td>num_food</td><td>Integer. The number of restaurants in the viewport; including those not explicitly listed in <tt>results</tt>.</td><td><tt>20</tt></td></tr>
+<tr><td>num_event</td><td>Integer. The number of events in the viewport; including those not explicitly listed in <tt>results</tt>.</td><td><tt>10</tt></td></tr>
+<tr><td>results</td><td><tt>TravelAttraction[]</tt>. The most highly-recommended attractions that met the search criteria.</td><td>See <tt>TravelAttraction</tt>.</td></tr>
+</table>
 
-Navigation
-* Pusing cancel takes you back to the map screen
+Other Types
+=========
+<tt>GeoBounds</tt> represents a recommended viewport for the map. It is an object with these fields:
 
-Empty search
-* When the search screen is first displayed the user won't have a search typed in yet
-* It should show a "special" search at the top of the recent searches: "My trip"
-* It should show the users recent searches
-* Touching a recent search executes that search and takes you to the Map page
-* Touching "My trip" takes you to the map page with the "My trip" search executed, e.g. shows you your saved places
+<table>
+<tr><th>Field</th><th>Description</th><th>Examples</th></tr>
+<tr><td>north</td><td>Double. The northern latitude.</td><td><tt>47.646229</tt></td></tr>
+<tr><td>east</td><td>Double. The eastern longitude.</td><td><tt>-122.307658</tt></td></tr>
+<tr><td>south</td><td>Double. The southern latitude.</td><td><tt>47.594739</tt></td></tr>
+<tr><td>west</td><td>Double. The western longitude.</td><td><tt>-122.391772</tt></td></tr>
+</table>
 
-Autocomplete
-* As the user types in a search it will show them suggestions
-* Some suggestions will be locations that move the map (like New York) others will be keywords that search for places on the current map (e.g. steak houses)
+<tt>TravelAttraction</tt> represents a generic attraction (a restauraunt, a concert, or a tourist sight like the Statue of Liberty). It is an object with these fields:
 
-## Analytics ##
+<table>
+<tr><th>Field</th><th>Description</th><th>Examples</th></tr>
+<tr><td>id</td><td>String. The ID of this attraction.</td><td><tt>-9223372036852184203</tt></td></tr>
+<tr><td>kind</td><td>String. The kind of the attraction.</td><td><tt>sight</tt>, <tt>food</tt>, or <tt>event</tt></td></tr>
+<tr><td>name</td><td>String. The name of the attraction.</td><td><tt>Space Needle</tt></td></tr>
+<tr><td>lat</td><td>Double. The latitude of the attraction.</td><td><tt>47.620484</tt></td></tr>
+<tr><td>lng</td><td>Double. The longitude of the attraction.</td><td><tt>-122.349715</tt></td></tr>
+<tr><td>thumbs</td><td><tt>Photo[]</tt>. Thumbnails of the attraction; at most 100x100. May be empty.</td><td>See <tt>Photo</tt>.</td></tr>
+<tr><td>photos</td><td><tt>Photo[]</tt>. Photos of the attraction; at most 640x480. May be empty.</td><td>See <tt>Photo</tt>.</td></tr>
+<tr><td>address (optional)</td><td>String. The address of the attraction.</td><td><tt>400 Broad St</tt></td></tr>
+<tr><td>city (optional)</td><td>String. The city of the attraction.</td><td><tt>Seattle</tt></td></tr>
+<tr><td>phone (optional)</td><td>String. The phone number of the attraction.</td><td><tt>(206) 905-2111</tt></td></tr>
+<tr><td>twitter (optional)</td><td>String. The twitter handle of the attraction.</td><td><tt>space_needle</tt></td></tr>
+<tr><td>facebook_url (optional)</td><td>String. The URL of the Facebook page of the attraction.</td><td><tt>http://www.facebook.com/spaceneedle/info</tt></td></tr>
+<tr><td>wikipedia_url (optional)</td><td>String. The URL of the Wikipedia page of the attraction.</td><td><tt>http://en.wikipedia.org/wiki/Space_Needle</tt></td></tr>
+<tr><td>yelp_rating (optional)</td><td>Double. The attraction's rating on Yelp.</td><td><tt>4.5</tt></td></tr>
+<tr><td>yelp_reviews (optional)</td><td>Int. The number of reviews of the attraction on Yelp.</td><td><tt>128</tt></td></tr>
+<tr><td>yelp_url (optional)</td><td>String. The URL of the attraction's Yelp page.</td><td><tt>http://www.yelp.ca/biz/space-needle-seattle</tt></td></tr>
+<tr><td>url (optional)</td><td>String. The URL of the attraction's website.</td><td><tt>http://spaceneedle.com/</tt></td></tr>
+<tr><td>hours_today (optional)</td><td>String. The hours of the attraction today.</td><td><tt>10am - 11:30pm</tt>, <tt>Closed</tt></td></tr>
+<tr><td>price_range (optional)</td><td>String. The general price range of the attraction.</td><td><tt>$</tt>, <tt>$$</tt>, <tt>$$$</tt></td></tr>
+<tr><td>subkind (optional)</td><td>String. The specific kind of attraction.</td><td><tt>Musical</tt>, <tt>Pro Sports</tt>, <tt>French</tt>. Not an exhausitive list.</td></tr>
+<tr><td>showtimes (optional)</td><td><tt>Showtime[]</tt>. The list of showtimes and prices.</td><td>See <tt>Showtime</tt>.</td></tr>
+</table>
 
-* Views of each screen
-* Events: search, swipe-detail-panel, filter-event, filter-attraction, filter-restaurant, filter-date, save-to-mytrip, delete-from-mytrip, detail-call, detail-directions, detail-tickets, detail-website, detail-yelp, detail-fb, detail-twitter
-* 
+<tt>Photo</tt> represents a photo of an attraction. It is an object with these fields:
+
+<table>
+<tr><th>Field</th><th>Description</th><th>Examples</th></tr>
+<tr><td>url</td><td>String. The URL of the image.</td><td><tt>http://s3.sortable-static.com/img/travel/item:-9223372036852184203:photos/fe71640ecda0086fc16365bddd834e46-75-100</tt></td></tr>
+<tr><td>w</td><td>Int. The width of the image in pixels.</td><td><tt>75</tt></td></tr>
+<tr><td>h</td><td>Int. The height of the image in pixels.</td><td><tt>100</tt></td>
+</tr>
+<tr><td>credit (optional)</td><td>The source of the URL.</td><td><tt>Wikipedia</tt></td></tr>
+<tr><td>credit_url (optional)</td><td>A link to the source of the URL.</td><td><tt>http://en.wikipedia.org/wiki/File:Space_Needle_2011-07-04.jpg</tt></td></tr>
+<tr><td>caption (optional)</td><td>A caption for the image.</td><td><tt>The Space Needle, as seen from below.</tt></td></tr>
+</table>
+
+<tt>Showtime</tt> represents a showtime and a price range for tickets. It is an object with these fields:
+
+
+<table>
+<tr><th>Field</th><th>Description</th><th>Examples</th></tr>
+<tr><td>time</td><td>String. An ISO8601 time of when the event is happening.</td><td><tt>2013-01-10T10:00:00Z</tt></td></tr>
+<tr><td>min (optional)</td><td>Double. The price of the cheapest ticket.</td><td><tt>35</tt></td></tr>
+<tr><td>max (optional)</td><td>Double. The price of the most expensive ticket.</td><td><tt>100</tt></td>
+</tr>
+</table>
