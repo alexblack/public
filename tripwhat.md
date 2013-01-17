@@ -6,6 +6,8 @@ support for caching to determine the lifetime of caching an object.
 
 For the <tt>My Trip</tt> feature, the app will need to remember the JSON document associated with the user's saved attractions. There is no API to fetch the JSON document for a list of IDs.
 
+For recent searches, remember the JSON document from <tt>/api/autosuggest</tt> for searches that the user selected.
+
 Autosuggest
 =========
 
@@ -62,7 +64,7 @@ Examples:
 
 **App interaction**
 
-When panning the map, include new results and leave the old results on the map. When zooming the map, reset the results
+When panning the map or zooming into the map, include new results and leave the old results on the map. When zooming out the map, reset the results
 and only show the freshest results.
 
 <table>
