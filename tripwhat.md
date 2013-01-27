@@ -61,6 +61,7 @@ For a given bounding geographical area, return attractions that match a query or
 Examples:
 * http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=sight,food,event
 * http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=event&from=2013-01-10T10:00:00Z&to=2013-02-10T10:00:00Z
+* http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=sight,food,event&ids=-9223372036852154777
 
 **App interaction**
 
