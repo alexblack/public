@@ -45,6 +45,7 @@ If a response has bounds, reset the map bounds to include that region. If a resp
 <tr><td>name</td><td>String. The name of the suggested query.</td><td><tt>sushi restauraunts</tt>, <tt>Seattle</tt>, <tt>Space Needle</tt></td></tr>
 <tr><td>location (optional)</td><td>String. The location of the attraction.</td><td><tt>Seattle, WA</tt></td></tr>
 <tr><td>kind</td><td>String. The kind of attraction.</td><td><tt>city</tt>, <tt>hood</tt>, <tt>sight</tt>, <tt>food</tt>, <tt>event</tt>, <tt>query</tt></td></tr>
+<tr><td>latlng (optional)</td><td><tt>LatLng</tt> object. The position of the item.</td><td>See <tt><a href="#latlng">LatLng</a></tt>.</td></tr>
 <tr><td>bounds (optional)</td><td><tt>GeoBounds</tt> object. The recommended viewport for the map if the user selects this item.</td><td>See <tt><a href="#geobounds">GeoBounds</a></tt>.</td></tr>
 </table>
 
@@ -122,6 +123,15 @@ Other Types
 <tr><td>south</td><td>Double. The southern latitude.</td><td><tt>47.594739</tt></td></tr>
 <tr><td>west</td><td>Double. The western longitude.</td><td><tt>-122.391772</tt></td></tr>
 </table>
+
+<a name="latlng"/><tt>LatLng</tt> represents the location of the item. It is an object with these fields:
+
+<table>
+<tr><th>Field</th><th>Description</th><th>Examples</th></tr>
+<tr><td>lat</td><td>Double. The latitude.</td><td><tt>47.646229</tt></td></tr>
+<tr><td>lng</td><td>Double. The longitude.</td><td><tt>-122.307658</tt></td></tr>
+</table>
+
 
 <a name="travelattraction"/><tt>TravelAttraction</tt> represents a generic attraction (a restauraunt, a concert, or a tourist sight like the Statue of Liberty). It is an object with these fields:
 
