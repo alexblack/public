@@ -17,15 +17,17 @@ Examples:
 * http://tripwhat.com/api/autosuggest?lat=47.609722&lng=-122.333056&q=new
 * http://tripwhat.com/api/autosuggest?lat=47.609722&lng=-122.333056&q=space
 * http://tripwhat.com/api/autosuggest?lat=47.609722&lng=-122.333056&q=pi
+* http://tripwhat.com/api/autosuggest?lat=47.609722&lng=-122.333056&kind=trip
 
 <table>
 <tr>
 <th>Parameter</th><th>Description</th><th>Examples</th>
 </tr>
-<td>q</td><td>The search query.</td><td><tt>Space Needle</tt>, <tt>sushi</tt>, <tt>Seattle</tt></td>
+<td>q</td><td>The search query. (optional)</td><td><tt>Space Needle</tt>, <tt>sushi</tt>, <tt>Seattle</tt></td>
 </tr>
 <tr><td>lat (optional)</td><td>The user's latitude; will be inferred from IP address if omitted.</td><td><tt>47.609722</tt></td></tr>
 <tr><td>lng (optional)</td><td>The user's longitude; will be inferred from IP address if omitted.</td><td><tt>-122.333056</tt></td></tr>
+<tr><td>kinds (optional)</td><td>Comma-separated list of the kind of results desired.</td><td><tt>trip</tt></td></tr>
 </table>
 
 **App interaction**
@@ -63,6 +65,7 @@ Examples:
 * http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=sight,food,event
 * http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=event&from=2013-01-10T10:00:00Z&to=2013-02-10T10:00:00Z
 * http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=sight,food,event&ids=-9223372036852154777
+* http://tripwhat.com/api/search?south=47.594739&east=-122.307658&north=47.646229&west=-122.391772&kinds=trip&trips=-9223372036849649407
 
 **App interaction**
 
@@ -79,7 +82,9 @@ and only show the freshest results.
 <tr><td>east</td><td>The eastern longitude.</td><td><tt>-122.307658</tt></td></tr>
 <tr><td>south</td><td>The southern latitude.</td><td><tt>47.594739</tt></td></tr>
 <tr><td>west</td><td>The western longitude.</td><td><tt>-122.391772</tt></td></tr>
-<tr><td>kinds</td><td>Comma-separated string of attraction kinds to return.</td><td><tt>sight,food,event</tt></td></tr>
+<tr><td>kinds</td><td>Comma-separated string of attraction kinds to return.</td><td><tt>sight,food,event,trip</tt></td></tr>
+<tr><td>trips</td><td>Comma-separated string of trips to return.</td><td><tt>-9223372036849649407</tt></td></tr>
+<tr><td>keys</td><td>Comma-separated string of trip keys.</td><td><tt>nh-cbioxwmm5</tt></td></tr>
 <tr><td>from (optional)</td><td>An ISO 8601 timestamp; events must be scheduled AFTER this value. If not present, defaults to the current time.</td><td><tt>2013-01-10T10:00:00Z</tt></td></tr>
 <tr><td>to (optional)</td><td>An ISO 8601 timestamp; events must be scheduled BEFORE this value. If not present, defaults to the current time plus 24 hours.</td><td><tt>2013-01-11T10:00:00Z</tt></td></tr>
 <tr><td>ids</td><td>Comma-separated list of attraction IDs. These IDs are guaranteed to be in the response document.</td><td><tt>-9223372036852184203</tt></td></tr>
