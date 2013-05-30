@@ -23,7 +23,7 @@ Examples:
 <tr>
 <th>Parameter</th><th>Description</th><th>Examples</th>
 </tr>
-<td>q</td><td>The search query. (optional)</td><td><tt>Space Needle</tt>, <tt>sushi</tt>, <tt>Seattle</tt></td>
+<tr><td>q</td><td>The search query. (optional)</td><td><tt>Space Needle</tt>, <tt>sushi</tt>, <tt>Seattle</tt></td>
 </tr>
 <tr><td>lat (optional)</td><td>The user's latitude; will be inferred from IP address if omitted.</td><td><tt>47.609722</tt></td></tr>
 <tr><td>lng (optional)</td><td>The user's longitude; will be inferred from IP address if omitted.</td><td><tt>-122.333056</tt></td></tr>
@@ -200,3 +200,28 @@ Other Types
 <tr><td>max (optional)</td><td>Double. The price of the most expensive ticket.</td><td><tt>100</tt></td>
 </tr>
 </table>
+
+Apple Smart Banner
+===============
+
+The map pages embed [Apple Smart Banners] [1]. This lets an iPhone user launch the app with navigational context in the form of a URL like:
+
+http://tripwhat.com/params?<i>key-value-pairs</i>
+
+Valid key-value pairs are:
+
+<table>
+<tr><th>Field</th><th>Description</th><th>Example</th></tr>
+<tr><td>north</td><td>The northern latitude.</td><td><tt>47.646229</tt></td></tr>
+<tr><td>east</td><td>The eastern longitude.</td><td><tt>-122.307658</tt></td></tr>
+<tr><td>south</td><td>The southern latitude.</td><td><tt>47.594739</tt></td></tr>
+<tr><td>west</td><td>The western longitude.</td><td><tt>-122.391772</tt></td></tr>
+<tr><td>kinds</td><td>Comma-separated string of attraction kinds to return.</td><td><tt>sight,food,event,trip</tt></td></tr>
+<tr><td>from (optional)</td><td>An ISO 8601 timestamp; events must be scheduled AFTER this value. If not present, defaults to the current time.</td><td><tt>2013-01-10T10:00:00Z</tt></td></tr>
+<tr><td>to (optional)</td><td>An ISO 8601 timestamp; events must be scheduled BEFORE this value. If not present, defaults to the current time plus 24 hours.</td><td><tt>2013-01-11T10:00:00Z</tt></td></tr>
+<tr><td>q (optional)</td><td>The search query.</td><td><tt>Space Needle</tt>, <tt>sushi</tt>, <tt>Seattle</tt></td>
+</tr>
+ 
+</table>
+
+[1]: http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
