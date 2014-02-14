@@ -46,6 +46,7 @@ Its important we understand what users are interested in and what they do on the
 ## Pageviews
 - Pageviews for the listings screen and listing details screen should be logged like normal to google analytics
 - When the user uses infinite scroll a pageview should be logged to google analytics like http://hostname.com/wedding/2, or http://hostname.com/shoes/10 for example, so if the user scrolls to see 100 items then 10 pageviews will be tracked total
+- 
 ## Events
 Events should be logged with (category, action, label)
 - When the user stars or unstars a listing on listings or details screen, Category=listing, Action=star/unstar, label=<listing-url>
