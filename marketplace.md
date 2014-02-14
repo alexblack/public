@@ -19,4 +19,23 @@ This screen lets you read the information about the listing and swipe through th
 - Tapping the photo hides all other UI elements, swiping is still possible, tapping again reveals the UI elements
 - Pushing browser-back at any point takes you to the listings screen (not to a previous photo)
 
-# Admin screens (Desktop)
+## Displaying results
+- Results should be shown within 25 miles of the user's location, by default
+- The site should use the user's location determined by GPS (if user permits) and fallback to geoip location
+- Results should be sorted by popularity, popularity is defined as # of listing-detail pageviews in the last 30 days + # of times the listing has been saved * 10 in the last 30 days
+
+## Url proposals
+- http://hostname.com/popular (displays popular listings)
+- http://hostname.com/wedding (displays listings in category wedding)
+- http://hostname.com/wedding?max-price=250 (listings for less than $250)
+- http://hostname.com/saved (displays starred listings)
+- http://hostname.com/1244-red-dress (displays listing with id 1244)
+
+# Admin screen (Desktop)
+
+## Add listing screen
+This screen lets the user add a listing from Craigslist.
+- The user pastes a url from a craigslist listing
+- The form is then popularted from the craigslist listing
+- The user can then change the desc, specifyc a category etc and hit ADD
+- The listing should then be added to the database, and the user given a 302 redirect to the listing details screen
