@@ -40,7 +40,6 @@ This screen lets the user add a listing from Craigslist.
 - The form is then popularted from the craigslist listing
 - The user can then change the desc, specify a category etc and hit ADD
 - The listing should then be added to the database, and the user given a 302 redirect to the listing details screen
-- 
 
 # Google Analytics
 Its important we understand what users are interested in and what they do on the site. 
