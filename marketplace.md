@@ -23,7 +23,10 @@ This screen lets you read the information about the listing and swipe through th
 ## Displaying results
 - Results should be shown within 25 miles of the user's location, by default
 - The site should use the user's location determined by GPS (if user permits) and fallback to geoip location
-- Results should be sorted by popularity, popularity is defined as # of listing-detail pageviews in the last 30 days + # of times the listing has been saved * 10 in the last 30 days
+- Results should be sorted by popularity
+
+### Popularity
+- popularity is defined as # of listing-detail pageviews in the last 30 days + # of times the listing has been saved * 10 in the last 30 days
 
 ## Url proposals
 - http://hostname.com/popular (displays popular listings)
