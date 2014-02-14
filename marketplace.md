@@ -9,6 +9,7 @@ This screen lets the user scroll through listings.
 - Tapping 'filer' reveals the filter screen
 - Tapping the star on any listing adds (or removes) that listing from the list of saved items
 - Tapping a listing takes you to the listing details screen
+
 ## Listing details screen
 This screen lets you read the information about the listing and swipe through the photos
 - Swiping to the left will advance to the next photo
