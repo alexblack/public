@@ -34,6 +34,7 @@ This screen lets you read the information about the listing and swipe through th
 - http://hostname.com/wedding?max-price=250 (listings for less than $250)
 - http://hostname.com/saved (displays starred listings)
 - http://hostname.com/1244-red-dress (displays listing with id 1244)
+- http://hostname.com/1244-red-dress/photos/2 (displays the second photo of listing 2)
 
 # Admin screen (Desktop)
 
@@ -50,6 +51,7 @@ Its important we understand what users are interested in and what they do on the
 ## Pageviews
 - Pageviews for the listings screen and listing details screen should be logged like normal to google analytics
 - When the user uses infinite scroll a pageview should be logged to google analytics like http://hostname.com/wedding/2, or http://hostname.com/shoes/10 for example, so if the user scrolls to see 100 items then 10 pageviews will be tracked total
+- Track a pageview for each swipe through the photos of a listing, with urls like http://hostname.com/1244-red-dress/photos/2
  
 ## Events
 Events should be logged with (category, action, label)
