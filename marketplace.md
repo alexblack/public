@@ -29,7 +29,7 @@ This screen lets you read the information about the listing and swipe through th
 - popularity is defined as # of listing-detail pageviews in the last 30 days + # of times the listing has been saved * 10 in the last 30 days
 
 ## Url proposals
-- http://hostname.com/popular (displays popular listings)
+- http://hostname.com (displays popular listings)
 - http://hostname.com/wedding (displays listings in category wedding)
 - http://hostname.com/wedding?max-price=250 (listings for less than $250)
 - http://hostname.com/saved (displays starred listings)
