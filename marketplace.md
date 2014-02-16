@@ -78,7 +78,7 @@ The goal here is to show the user listings close to their location.
 
 ## Swiping
 
-To let uses swipe between photos naturally I think it would make sense to use a library like this: http://cubiq.org/swipeview
+To let users swipe between photos naturally I think it would make sense to use a library like this: http://cubiq.org/swipeview
 
 # Proposed database
 
