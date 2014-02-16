@@ -65,11 +65,14 @@ Events should be logged with (category, action, label)
 # Implementation details
 ## Images
 Our goal is to display the photos of the products as beautiful as possible!
+
 - On the listings screen, images should be adjusted (cropped, zoomed) as necessary to completely fill the bounding box, and each listing's box should be the exact same size
 - On the listing detail screen, images should be displayed full width
 - On all screens, images should be resized and optimized so that file sizes are small to make sure the app is fast
+
 ## Geolocation
 The goal here is to show the user listings close to their location.
+
 - Need to scrape the coordinates from Craigslist, see source at http://vancouver.en.craigslist.ca/rds/clo/4309545403.html <div id="map" data-latitude="49.129146" data-longitude="-122.663574"></div>
 - Need to find the user's location, first use their GPS, if not, then fallback to Geoip perhaps something like https://github.com/aFarkas/webshim/blob/master/src/shims/geolocation.js
 
