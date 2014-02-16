@@ -62,6 +62,13 @@ Events should be logged with (category, action, label)
 - When the user clicks the post-listing-for-sale, Category=Nav, Action=post
 - When the user clicks the share button, Category=listing, Action=share
 
+# Implementation details
+## Images
+Our goal is to display the photos of the products as beautiful as possible!
+- On the listings screen, images should be adjusted (cropped, zoomed) as necessary to completely fill the bounding box, and each listing's box should be the exact same size
+- On the listing detail screen, images should be displayed full width
+- On all screens, images should be resized and optimized so that file sizes are small to make sure the app is fast
+
 # Proposed database
 
 ## Table: Listing
