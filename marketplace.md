@@ -76,6 +76,10 @@ The goal here is to show the user listings close to their location.
 - Need to scrape the coordinates from Craigslist, see source at http://vancouver.en.craigslist.ca/rds/clo/4309545403.html <div id="map" data-latitude="49.129146" data-longitude="-122.663574"></div>
 - Need to find the user's location, first use their GPS, if not, then fallback to Geoip perhaps something like https://github.com/aFarkas/webshim/blob/master/src/shims/geolocation.js
 
+## Swiping
+
+To let uses swipe between photos naturally I think it would make sense to use a library like this: http://cubiq.org/swipeview
+
 # Proposed database
 
 ## Table: Listing
